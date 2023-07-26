@@ -9,5 +9,6 @@ import './ccip-token-transfer-batch';
 import './send-token-and-data';
 import './send-message';
 import './get-message';
+import './get-supported-tokens';
 import './fill-sender';
 import './cross-chain-nft-minter';
