@@ -11,6 +11,9 @@ const POLYGON_MUMBAI_RPC_URL = process.env.POLYGON_MUMBAI_RPC_URL;
 const OPTIMISM_GOERLI_RPC_URL = process.env.OPTIMISM_GOERLI_RPC_URL;
 const ARBITRUM_TESTNET_RPC_URL = process.env.ARBITRUM_TESTNET_RPC_URL;
 const AVALANCHE_FUJI_RPC_URL = process.env.AVALANCHE_FUJI_RPC_URL;
+const ETHEREUM_RPC_URL = process.env.ETHEREUM_RPC_URL;
+const OPTIMISM_RPC_URL = process.env.OPTIMISM_RPC_URL;
+const POLYGON_RPC_URL = process.env.POLYGON_RPC_URL;
 
 const config: HardhatUserConfig = {
   solidity: '0.8.19',
@@ -42,7 +45,22 @@ const config: HardhatUserConfig = {
       url: AVALANCHE_FUJI_RPC_URL !== undefined ? AVALANCHE_FUJI_RPC_URL : '',
       accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
       chainId: 43113
-    }
+    },
+    ethereumMainnet: {
+      url: ETHEREUM_RPC_URL !== undefined ? ETHEREUM_RPC_URL : '',
+      accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+      chainId: 1
+    },
+    optimismMainnet: {
+      url: OPTIMISM_RPC_URL !== undefined ? OPTIMISM_RPC_URL : '',
+      accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+      chainId: 10,
+    },
+    polygonMainnet: {
+      url: POLYGON_RPC_URL !== undefined ? POLYGON_RPC_URL : '',
+      accounts: PRIVATE_KEY !== undefined ? [PRIVATE_KEY] : [],
+      chainId: 137
+    },
   },
   typechain: {
     externalArtifacts: ['./abi/*.json']
