@@ -12,3 +12,4 @@ import './get-message';
 import './get-supported-tokens';
 import './fill-sender';
 import './cross-chain-nft-minter';
+import './cross-chain-token';

@@ -61,6 +61,18 @@ declare module "hardhat/types/runtime" {
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.Ownable__factory>;
     getContractFactory(
+      name: "ERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ERC20__factory>;
+    getContractFactory(
+      name: "IERC20Metadata",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20Metadata__factory>;
+    getContractFactory(
+      name: "IERC20",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.IERC20__factory>;
+    getContractFactory(
       name: "ERC721",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.ERC721__factory>;
@@ -112,6 +124,18 @@ declare module "hardhat/types/runtime" {
       name: "SourceMinter",
       signerOrOptions?: ethers.Signer | FactoryOptions
     ): Promise<Contracts.SourceMinter__factory>;
+    getContractFactory(
+      name: "ICBToken",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.ICBToken__factory>;
+    getContractFactory(
+      name: "TokenReceiver",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TokenReceiver__factory>;
+    getContractFactory(
+      name: "TokenSender",
+      signerOrOptions?: ethers.Signer | FactoryOptions
+    ): Promise<Contracts.TokenSender__factory>;
     getContractFactory(
       name: "ProgrammableTokenTransfers",
       signerOrOptions?: ethers.Signer | FactoryOptions
@@ -194,6 +218,21 @@ declare module "hardhat/types/runtime" {
       signer?: ethers.Signer
     ): Promise<Contracts.Ownable>;
     getContractAt(
+      name: "ERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ERC20>;
+    getContractAt(
+      name: "IERC20Metadata",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20Metadata>;
+    getContractAt(
+      name: "IERC20",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.IERC20>;
+    getContractAt(
       name: "ERC721",
       address: string,
       signer?: ethers.Signer
@@ -258,6 +297,21 @@ declare module "hardhat/types/runtime" {
       address: string,
       signer?: ethers.Signer
     ): Promise<Contracts.SourceMinter>;
+    getContractAt(
+      name: "ICBToken",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.ICBToken>;
+    getContractAt(
+      name: "TokenReceiver",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TokenReceiver>;
+    getContractAt(
+      name: "TokenSender",
+      address: string,
+      signer?: ethers.Signer
+    ): Promise<Contracts.TokenSender>;
     getContractAt(
       name: "ProgrammableTokenTransfers",
       address: string,
