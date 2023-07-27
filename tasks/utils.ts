@@ -19,6 +19,21 @@ export const getProviderRpcUrl = (network: string) => {
         case "polygonMumbai":
             rpcUrl = process.env.POLYGON_MUMBAI_RPC_URL;
             break;
+        case "ethereumMainnet":
+            rpcUrl = process.env.ETHEREUM_RPC_URL;
+            break;
+        case "optimismMainnet":
+            rpcUrl = process.env.OPTIMISM_RPC_URL;
+            break;
+        case "arbitrumMainnet":
+            rpcUrl = process.env.ARBITRUM_RPC_URL;
+            break;
+        case "avalancheMainnet":
+            rpcUrl = process.env.AVALANCHE_RPC_URL;
+            break;
+        case "polygonMainnet":
+            rpcUrl = process.env.POLYGON_RPC_URL;
+            break;
         default:
             throw new Error("Unknown network: " + network);
     }
@@ -55,6 +70,16 @@ export const getRouterConfig = (network: string) => {
             return routerConfig.avalancheFuji;
         case "polygonMumbai":
             return routerConfig.polygonMumbai;
+        case "ethereumMainnet":
+            return routerConfig.ethereumMainnet;
+        case "optimismMainnet":
+            return routerConfig.optimismMainnet;
+        case "arbitrumMainnet":
+            return routerConfig.arbitrumMainnet;
+        case "avalancheMainnet":
+            return routerConfig.avalancheMainnet;
+        case "polygonMainnet":
+            return routerConfig.polygonMainnet;
         default:
             throw new Error("Unknown network: " + network);
     }
