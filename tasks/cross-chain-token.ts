@@ -1,7 +1,7 @@
 import { task } from "hardhat/config";
 import { HardhatRuntimeEnvironment, TaskArguments } from "hardhat/types";
 import { getPayFeesIn, getPrivateKey, getProviderRpcUrl, getRouterConfig } from "./utils";
-import { Wallet, providers } from "ethers";
+import { Wallet, providers, BigNumber } from "ethers";
 import { Spinner } from "../utils/spinner";
 import { LINK_ADDRESSES } from "./constants";
 import { 
@@ -10,7 +10,9 @@ import {
     ICBToken, 
     ICBToken__factory,
     TokenReceiver,
-    TokenReceiver__factory
+    TokenReceiver__factory,
+    Ownable,
+    Ownable__factory
 } from "../typechain-types";
 import { getCcipMessageId } from "./helpers";
 
@@ -128,6 +130,26 @@ task('cross-chain-icb-balance-of', 'Gets the balance of ICB token for provided a
         console.log(`ℹ️  The balance of ICB token of the ${taskArguments.owner} account on ${taskArguments.blockchain} chain is ${balanceOf.toNumber()}`);
     });
 
+task(`check-contract-ownership`, `Gets owner of a specific smart contract on specific blockchain`)
+    .addParam(`contract`, `The address of the smart contract`)
+    .addParam(`blockchain`, `The blockchain where the smart contract was deployed`)
+    .setAction(async (taskArguments: TaskArguments) => {
+        const rpcProviderUrl = getProviderRpcUrl(taskArguments.blockchain);
+        const provider = new providers.JsonRpcProvider(rpcProviderUrl);
+
+        const spinner: Spinner = new Spinner();
+
+        const token: Ownable = Ownable__factory.connect(taskArguments.contract, provider);
+
+        console.log(`ℹ️  Attempting to get owner of smart contract (${taskArguments.contract})`);
+        spinner.start();
+
+        const owner = await token.owner();
+
+        spinner.stop();
+        console.log(`ℹ️  The owner of contract ${taskArguments.contract} on ${taskArguments.blockchain} chain is ${owner}`);
+    });
+
 task('cross-chain-icb-get-burner', 'Gets burner of ICB token to check whether TokenSender contract or not')
     .addParam(`token`, `The address of the ICBToken smart contract`)
     .addParam(`blockchain`, `The blockchain where the ICBToken smart contract was deployed`)
@@ -178,7 +200,7 @@ task(`cross-chain-icb-send`, `Burn ICB in source chain and mint corresponding am
         const tx = await tokenSenderContract.send(
             destinationChainSelector,
             tokenReceiver,
-            amount,
+            BigNumber.from(amount),
             fees
         );
 
